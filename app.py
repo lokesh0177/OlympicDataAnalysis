@@ -17,7 +17,7 @@ st.sidebar.title('Olympic Analysis')
 st.sidebar.image('https://e7.pngegg.com/pngimages/1020/402/png-clipart-2024-summer-olympics-brand-circle-area-olympic-rings-olympics-logo-text-sport.png')
 user_menu = st.sidebar.radio(
     'Select an Option',
-    ('Medal Tally', 'OverAll Analysis', 'Country_wise Analysis', 'Athlete wise Analysis')
+    ('Medal Tally', 'OverAll Analysis', 'Country_wise Analysis', 'Athlete wise Analysis','Search Athlete')
 )
 if user_menu == 'Medal Tally':
     st.sidebar.header('Medal Tally')
@@ -178,3 +178,7 @@ if user_menu == 'Athlete wise Analysis':
     st.plotly_chart(fig)
 
 
+if user_menu == 'Search Athlete':
+    search_query = st.sidebar.text_input('Enter search query:')
+    search = helper.search(df,search_query)
+    st.table(search)
