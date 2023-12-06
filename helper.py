@@ -110,5 +110,3 @@ def men_vs_women(df):
 
     return final
 
-def search(df,name):
-    return df[df["Name"]==name].drop(['notes','Medal'],axis='columns')
