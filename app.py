@@ -194,4 +194,4 @@ if user_menu == 'Search Athlete':
         if search.empty:
             st.warning("No results found for the entered name.")
         else:
-            st.write(search.head(10))
+            st.write(search.head(50))
