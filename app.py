@@ -179,6 +179,18 @@ if user_menu == 'Athlete wise Analysis':
 
 
 if user_menu == 'Search Athlete':
-    search_query = st.sidebar.text_input('Enter search query:')
-    search = helper.search(df,search_query)
-    st.table(search)
+    st.title("Name Search")
+    name = st.text_input('Enter Athlete Name:')
+    if name == "":
+        pass
+    else:
+        name = inflection.camelize(name,True)
+        search = df[df["Name"].str.startswith(name) | df["Name"].str.endswith(name)].drop(
+            ['notes', "Bronze", "Gold", "Silver","ID"],
+            axis=1).fillna(0)
+        search['Medal'] = search['Medal'].astype(str)
+        search['region'] = search['region'].astype(str)
+        if search.empty:
+            st.warning("No results found for the entered name.")
+        else:
+            st.write(search.head(10))
